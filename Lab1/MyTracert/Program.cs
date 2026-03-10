@@ -165,12 +165,14 @@ namespace MyTracert
             //Checksum - байты 2 и 3
 
             //Identifier
-            byte[] idBytes = BitConverter.GetBytes(id);
+            short networkId = IPAddress.HostToNetworkOrder((short)id);
+            byte[] idBytes = BitConverter.GetBytes(networkId);
             packet[4] = idBytes[0];
             packet[5] = idBytes[1];
 
             //Sequence Number
-            byte[] seqBytes = BitConverter.GetBytes(sequence);
+            short networkSequence = IPAddress.HostToNetworkOrder((short)sequence);
+            byte[] seqBytes = BitConverter.GetBytes(networkSequence);
             packet[6] = seqBytes[0];
             packet[7] = seqBytes[1];
 
