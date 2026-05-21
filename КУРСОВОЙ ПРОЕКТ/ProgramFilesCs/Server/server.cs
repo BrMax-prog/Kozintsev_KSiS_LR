@@ -510,8 +510,6 @@ namespace server
 
                                             bullets.Add(newBullet);
 
-                                            //Console.WriteLine($"Создана пулька со скоростями: {newBullet.vx}, {newBullet.vy}");
-
                                         }
 
                                         break;
@@ -532,20 +530,13 @@ namespace server
 
                             if (readyStatus.ContainsKey(id))
                             {
-                                //Console.WriteLine($"Установлено значение готовности {id} в {ready}");
+                                
                                 readyStatus[id] = ready;
 
 
                                 foreach (var k in readyStatus.Keys) Console.WriteLine($"ID : {k} is {readyStatus[k]}");
 
 
-                                //bool allReady = readyStatus.Values.All(r => r);
-
-                                //if (allReady)
-                                //{
-                                //    Console.WriteLine("Перезапуск матча");
-                                //    RestartMatch();
-                                //}
                             }
 
                             break;
@@ -580,7 +571,7 @@ namespace server
                 else
                 {
                     DisconnectClient(client);
-                    //client.Close();
+                    
                 }
             }
 
