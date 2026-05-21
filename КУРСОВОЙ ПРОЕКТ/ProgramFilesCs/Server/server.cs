@@ -357,8 +357,6 @@ namespace server
 
                     MessageType type = (MessageType)typeByte[0];
 
-                    //Console.WriteLine($"Запрос тип {type}");
-
 
                     switch (type)
                     {
@@ -423,8 +421,6 @@ namespace server
 
                             Console.WriteLine($"[Input Handler] ID: {inputID}, Input: {input}");
 
-
-                            //Tank? idTank = tanks.FirstOrDefault<Tank>(t => t.PlayerID == inputID);
                             Tank? idTank = null;
 
                             for (int i = 0; i < tanks.Length; i++)
@@ -470,8 +466,6 @@ namespace server
                                         break;
 
                                     case Input.Shoot:
-
-                                        //Console.WriteLine($"interval: {(DateTime.Now - idTank.LastShotTime).TotalMilliseconds}");
 
                                         if ((DateTime.Now - idTank.LastShotTime).TotalMilliseconds >= idTank.CooldownMs)
                                         {
@@ -760,9 +754,6 @@ namespace server
 
                 byte[] data = BuildNamePacket();
 
-                //Console.WriteLine($"Начало отправки имен");
-
-
                 for (int i = 0; i < clients.Length; i++)
                 {
                     if (clients[i] == null) continue;
@@ -772,7 +763,7 @@ namespace server
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Не получилось отправить пакеты имен: {ex.ToString()}");
+                
             }
 
         }
@@ -851,8 +842,6 @@ namespace server
 
                 CollisionResult res = CheckBulletCollision(b, out Tank hitTank, out int tRow, out int tCol);
 
-                //Console.WriteLine($"Collision {b.selfID} : {res}");
-
                 if (res != CollisionResult.None)
                 {
                     if (res == CollisionResult.Tank)
@@ -868,7 +857,7 @@ namespace server
                             }
                             hitTank.IsAlive = false;
                             hitTank.Health = 0;
-                            //Console.WriteLine($"Убили {hitTank.PlayerID}: получились очки: {tanks[b.OwnerID].Score}");
+                            
                         }
                     }
                     else if (res == CollisionResult.Wall)
