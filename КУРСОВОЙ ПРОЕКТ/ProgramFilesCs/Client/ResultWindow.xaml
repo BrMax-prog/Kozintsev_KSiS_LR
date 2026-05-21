@@ -1,0 +1,64 @@
+﻿<Window x:Class="client.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:client"
+        mc:Ignorable="d"
+        Title="Результаты игры" Height="300" Width="400"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="#333">
+    <Grid Margin="10" Background="#333">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Игра окночена" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="White"/>
+        <StackPanel>
+            <!-- Шапка -->
+            <Border Background="#333" Padding="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="ID" Foreground="White" FontWeight="Bold" Grid.Column="0"/>
+                    <TextBlock Text="Имя" Foreground="White" FontWeight="Bold" Grid.Column="1"/>
+                    <TextBlock Text="Очки" Foreground="White" FontWeight="Bold" Grid.Column="2"/>
+                    <TextBlock Text="Смерти" Foreground="White" FontWeight="Bold" Grid.Column="3"/>
+                    <TextBlock Text="У/П" Foreground="White" FontWeight="Bold" Grid.Column="4"/>
+                </Grid>
+            </Border>
+            <!-- Список -->
+            <ItemsControl x:Name="ResultsItemsControl" Background="#111">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#333" BorderThickness="0,0,0,1" Padding="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding PlayerID}" Grid.Column="0" Foreground="{Binding ResultColor}"/>
+                                <TextBlock Text="{Binding PlayerName}" Grid.Column="1" Foreground="{Binding ResultColor}"/>
+                                <TextBlock Text="{Binding PlayerScore}" Grid.Column="2" Foreground="{Binding ResultColor}"/>
+                                <TextBlock Text="{Binding DeathCount}" Grid.Column="3" Foreground="{Binding ResultColor}"/>
+                                <TextBlock Text="{Binding KD}" Grid.Column="4" Foreground="{Binding ResultColor}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+        <Button x:Name="ReadyButton" Grid.Row="2" Content="Играть снова" Click="ReadyButton_Click" Height="30" Width="170" HorizontalAlignment="Left" Margin="0, 5, 0, 0"/>
+        <Button x:Name="LeaveButton" Grid.Row="2" Content="Выйти в меню" Click="LeaveButton_Click" Height="30" Width="170" HorizontalAlignment="Right" Margin="0, 5, 0, 0"/>
+    </Grid>
+</Window>

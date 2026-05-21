@@ -1,0 +1,89 @@
+﻿<Window x:Class="client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:client"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Background="#111">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header ="Доступные серверы" FontSize="20" Grid.Column="0" Margin="0, 0, 10, 0" Background="#222" Foreground="White" BorderThickness="0">
+            <ListBox x:Name="ServersList"
+                     ItemsSource="{Binding Servers}"
+                     SelectedItem="{Binding SelectedServer}"
+                     Margin="0,10,0,0"
+                     Background="#333">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Text=" | " Foreground="White"/>
+                            <TextBlock Text="{Binding IP}" Foreground="White"/>
+                            <TextBlock Text=" | Игроков: " Foreground="White"/>
+                            <TextBlock Text="{Binding Players}" Foreground="White"/>
+                            <TextBlock Text="/4" Foreground="White"/>
+
+                            <TextBlock Text=" | Цель: " Foreground="White"/>
+                            <TextBlock Text="{Binding WinScore}" Foreground="White"/>
+
+                            <TextBlock Text=" | Карта: " Foreground="White"/>
+                            <TextBlock Text="{Binding MapName}" Foreground="White"/>
+
+
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+                     
+        </GroupBox>
+
+        <StackPanel Grid.Column="1">
+            <GroupBox Header="Информация о сервере:" FontSize="20" Margin="0,0,0,10" Foreground="White" BorderThickness="0">
+                <StackPanel Margin="5">
+                    <TextBlock Text="{Binding SelectedServer.Name, StringFormat='Имя: {0}'}" Foreground="White" FontSize="16"/>
+                    <TextBlock Text="{Binding SelectedServer.IP, StringFormat='IP: {0}'}" Foreground="White" FontSize="16"/>
+                    <TextBlock Text="{Binding SelectedServer.Port, StringFormat='Порт: {0}'}" Foreground="White" FontSize="16"/>
+                    <TextBlock Text="{Binding SelectedServer.Players, StringFormat='Игроков: {0}/4'}" Foreground="White" FontSize="16"/>
+                </StackPanel>
+            </GroupBox>
+            
+            <Separator Margin="0,5"/>
+
+            <GroupBox Header="Ваш профиль:" FontSize="20" Foreground="White" BorderThickness="0">
+                <StackPanel Margin="5">
+                    <TextBlock Text="Имя пользователя: " FontSize="16" Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding PlayerName, UpdateSourceTrigger=PropertyChanged}" Margin="0, 0,0,25" FontSize="16" Foreground="White" Background="#444"/>
+                    <Button Content="Дополнительные параметры" FontSize="16" Margin="0,0,0,20" Click="UserParams_Click" Height="35"/>
+                    <TextBlock Text="Ваш локальный IP: " FontSize="16" Visibility="Collapsed" x:Name="IPInputText"  Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding LocalIP, UpdateSourceTrigger=PropertyChanged}" Margin="0, 0,0,5" FontSize="16" Foreground="White" Background="#444" Visibility="Collapsed" x:Name="IPInput"/>
+                    <TextBlock Text="Ваш порт: " FontSize="16" Visibility="Collapsed" x:Name="PortInputText"  Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding LocalPort, UpdateSourceTrigger=PropertyChanged}" Margin="0, 0,0,10" FontSize="16" Foreground="White" Background="#444" Visibility="Collapsed" x:Name="PortInput"/>
+
+                    <Button Content="Подключиться"
+                            Height="40"
+                            Background="#3EBF50"
+                            Foreground="White"
+                            Click="Connect_Click"
+                            IsEnabled="{Binding IsCanConnect}"
+                            FontSize="16"
+                            />
+
+                    <Button Content="Создать сервер"
+                            Height="40"
+                            FontSize="16"
+                           
+                            Click="CreateServer_Click"
+                            Margin="0,10,0,0"/>         
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -1,0 +1,54 @@
+﻿<Window x:Class="client.CreateServerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Создать сервер" Height="550" Width="450"
+        WindowStartupLocation="CenterOwner"
+        Background="#2D2D2D" ResizeMode="NoResize">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Основные настройки -->
+        <TextBlock Text="Основные настройки" FontWeight="Bold" FontSize="16" Foreground="White" Margin="0,0,0,10"/>
+        <StackPanel Grid.Row="1" Margin="0,0,0,15">
+            <TextBlock Text="Имя сервера:" Foreground="White" Margin="0,5"/>
+            <TextBox x:Name="ServerNameBox" Text="Мой сервер" Background="#444" Foreground="White" BorderBrush="#666"/>
+
+            <TextBlock Text="Длительность матча (сек):" Foreground="White" Margin="0,10,0,5"/>
+            <TextBox x:Name="DurationBox" Text="120" Background="#444" Foreground="White" BorderBrush="#666"/>
+
+            <TextBlock Text="Цель (очков до победы):" Foreground="White" Margin="0,10,0,5"/>
+            <TextBox x:Name="ScoreTargetBox" Text="5" Background="#444" Foreground="White" BorderBrush="#666"/>
+
+            <TextBlock Text="Карта:" Foreground="White" Margin="0,10,0,5"/>
+            <ComboBox x:Name="MapComboBox" Background="#444" Foreground="Black" BorderBrush="#666"/>
+        </StackPanel>
+
+        <!-- Дополнительные настройки -->
+        <TextBlock Grid.Row="2" Text="Дополнительные настройки" FontWeight="Bold" FontSize="16" Foreground="White" Margin="0,10,0,10"/>
+        <StackPanel Grid.Row="3" Margin="0,0,0,15">
+            <TextBlock Text="IP (any или конкретный):" Foreground="White" Margin="0,5"/>
+            <TextBox x:Name="IpBox" Text="any" Background="#444" Foreground="White" BorderBrush="#666"/>
+
+            <TextBlock Text="TCP порт:" Foreground="White" Margin="0,10,0,5"/>
+            <TextBox x:Name="TcpPortBox" Text="9999" Background="#444" Foreground="White" BorderBrush="#666"/>
+
+            <TextBlock Text="UDP порт:" Foreground="White" Margin="0,10,0,5"/>
+            <TextBox x:Name="UdpPortBox" Text="8888" Background="#444" Foreground="White" BorderBrush="#666"/>
+        </StackPanel>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button x:Name="CancelButton" Content="Отмена" Width="80" Height="30" Margin="0,0,10,0" Background="#666" Foreground="White" Click="CancelButton_Click"/>
+            <Button x:Name="CreateButton" Content="Запустить" Width="100" Height="30" Background="#4CAF50" Foreground="White" Click="CreateButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

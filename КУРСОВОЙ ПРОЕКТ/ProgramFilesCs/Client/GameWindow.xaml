@@ -1,0 +1,84 @@
+﻿<Window x:Class="client.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:client"
+        mc:Ignorable="d"
+        Title="GameWindow" Height="800" Width="850"
+        KeyDown="Window_KeyDown"
+        KeyUp="Window_KeyUp">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="#222">
+            <Viewbox Stretch="Uniform" Margin="10">
+                <Canvas x:Name="GameCanvas"
+                         Background="Black"
+                         Grid.Column="0"
+                        Width="800"
+                        Height="800">   
+                </Canvas>
+            </Viewbox>
+        </Grid>
+
+       
+
+        <StackPanel Grid.Column="1" Background="#333">
+            <TextBlock Text="Сообщения" Foreground="White" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox x:Name="LogBox" Height="300" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Background="#111" Foreground="#00FF00" TextWrapping="Wrap"/>
+
+            <TextBlock Text="Время до конца матча:" FontSize="20" Foreground="White" Margin="10"/>
+            <TextBlock x:Name="RemainingTime"  FontSize="20" Background="#111" Foreground="White" Height="40" TextAlignment="Center" />
+
+            <TextBlock Text="Игроки:" Margin="10,10,0,5" FontSize="20" Foreground="White"></TextBlock>
+            <!--<ListBox x:Name="PlayersListBox" Height="300" Background="#111">
+                
+            </ListBox>-->
+            <StackPanel>
+                <Border Background="#111" Padding="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="ID" Foreground="White" FontWeight="Bold" Grid.Column="0"/>
+                        <TextBlock Text="Имя" Foreground="White" FontWeight="Bold" Grid.Column="1"/>
+                        <TextBlock Text="HP" Foreground="White" FontWeight="Bold" Grid.Column="2"/>
+                        <TextBlock Text="Очки" Foreground="White" FontWeight="Bold" Grid.Column="3"/>
+                        
+                    </Grid>
+                </Border>
+                <ItemsControl x:Name="PlayersItems" Background="#111">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#222" BorderThickness="0,0,0,1" Padding="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding ID}" Grid.Column="0" Foreground="{Binding ResultColor}"/>
+                                    <TextBlock Text="{Binding Name}" Grid.Column="1" Foreground="{Binding ResultColor}"/>
+                                    <TextBlock Text="{Binding Health}" Grid.Column="2" Foreground="{Binding ResultColor}"/>
+                                    <TextBlock Text="{Binding Score}" Grid.Column="3" Foreground="{Binding ResultColor}"/>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>
